@@ -1,0 +1,50 @@
+#include "pch.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+
+
+int atoiImp(char *s)
+{
+	int nr = 0;
+	for (int i = 0; s[i] != '\n' && s[i]; i++)
+		nr = nr * 10 + s[i] - '0';
+	return nr;
+}
+int main()
+{
+	FILE *fis;
+	fis = fopen("ini.txt", "r");
+
+	if (fis == NULL)
+	{
+		printf("Fisier gol");
+		exit(1);
+	}
+
+	char s[100];
+	int sum = 0;
+	bool neg = false;
+
+	while (fgets(s, sizeof(s), fis))
+	{
+		/*if (s[0] == '-')
+		{
+			neg = true;
+			strcpy(s, s + 1);
+		}
+		if (neg == true)
+		{
+			sum -= atoiImp(s);
+			neg = false;
+		}
+		else*/ sum += atoiImp(s);
+	}
+
+	printf("%d", sum);
+
+	fclose(fis);
+
+	return 0;
+}

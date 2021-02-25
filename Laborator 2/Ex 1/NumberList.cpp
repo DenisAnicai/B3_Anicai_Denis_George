@@ -11,6 +11,8 @@ bool NumberList::Add(int x)
         return false;
     numbers[count] = x;
     count++;
+
+    return true;
 }
 
 void NumberList::Sort()

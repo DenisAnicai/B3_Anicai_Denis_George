@@ -8,9 +8,9 @@ void Student::SetName()
 	strcpy(name, name_student);
 }
 
-void Student::GetName(char student_name[256])
+char* Student::GetName()
 {
-	strcpy(student_name, name);
+	return name;
 }
 
 void Student::SetGradeEng(float x) 
@@ -28,22 +28,22 @@ void Student::SetGradeMat(float x)
 	mathematics = x;
 }
 
-void Student::GetGradeEng(float& x)
+float Student::GetGradeEng()
 {
-	x = english;
+	return english;
 }
 
-void Student::GetGradeHst(float& x)
+float Student::GetGradeHst()
 {
-	x = history;
+	return history;
 }
 
-void Student::GetGradeMat(float& x)
+float Student::GetGradeMat()
 {
-	x = mathematics;
+	return mathematics;
 }
 
-void Student::AverageGrade(float& x)
+float Student::AverageGrade()
 {
-	 x = (english + history + mathematics) / 3.0;
+	 return (english + history + mathematics) / 3.0;
 }

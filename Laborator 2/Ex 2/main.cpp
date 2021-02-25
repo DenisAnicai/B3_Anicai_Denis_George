@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "StudentClass.h"
 #include "GlobalFunctions.h"
 
@@ -18,14 +19,12 @@ int main()
 	s1.SetGradeEng(8.3);
 	s1.SetGradeHst(5.7);
 	cout << "Note student 1:\n";
-	s1.GetGradeMat(x);
-	cout << "matematica: "<< x;
+	cout << "matematica: "<< s1.GetGradeMat();
 	cout << '\n';
-	s1.GetGradeHst(x);
-	cout << "istorie: " << x;
+	cout << "istorie: " << s1.GetGradeHst();
 	cout << '\n';
-	s1.GetGradeEng(x);
-	cout << "engleza: " << x;
+	
+	cout << "engleza: " << s1.GetGradeEng();
 	cout << "\n\n";
 	
 
@@ -33,28 +32,22 @@ int main()
 	s2.SetGradeEng(6.8);
 	s2.SetGradeHst(4.9);
 	cout << "Note student 2:\n";
-	s2.GetGradeMat(x);
-	cout << "matematica: " << x;
+	cout << "matematica: " << s2.GetGradeMat();
 	cout << '\n';
-	s2.GetGradeHst(x);
-	cout << "istorie: " << x;
+	cout << "istorie: " << s2.GetGradeHst();
 	cout << '\n';
-	s2.GetGradeEng(x);
-	cout << "engleza: " << x;
+	cout << "engleza: " << s2.GetGradeEng();
 	cout << "\n\n";
 	
 
 
 	float medie1, medie2;
 	char nume_student1[256], nume_student2[256];
-	
+	strcpy(nume_student1, s1.GetName());
+	strcpy(nume_student2, s2.GetName());
 	cout << "Mediile celor doi:\n";
-	s1.AverageGrade(medie1);
-	s1.GetName(nume_student1);
-	cout << "medie " << nume_student1 << ": " << medie1 << "\n";
-	s2.AverageGrade(medie2);
-	s2.GetName(nume_student2);
-	cout << "medie " << nume_student2 << ": " << medie2 << "\n";
+	cout << "medie " << nume_student1 << ": " << s1.AverageGrade() << "\n";
+	cout << "medie " << nume_student2 << ": " << s2.AverageGrade() << "\n";
 
 	
 	if (CompareAverageGrade(s1, s2) == 1)

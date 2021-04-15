@@ -1,0 +1,95 @@
+#include <iostream>
+#include <map>
+#include <queue>
+#include <string>
+#include <vector>
+#include <utility>
+using namespace std;
+
+bool separator(char ch)
+{
+	string sep = " !?,.";
+	for (auto s : sep)
+	{
+		if (s == ch)
+			return true;
+	}
+	return false;
+}
+
+class compara
+{
+public:
+	bool operator() (pair<string, int> s1, pair<string, int> s2)
+	{
+		if (s1.second == s2.second)
+		{
+			return s1.first > s2.first;
+		}
+		else
+		{
+			return s1.second < s2.second;
+		}
+	}
+	
+};
+
+int main()
+{
+	string sir;
+	vector<string> cuvinte;
+	int indice = 0;
+	getline(cin, sir);
+
+	for (auto& ch : sir)
+	{
+		if (ch >= 'A' && ch <= 'Z')
+			ch += 32;
+	}
+
+	for (int i = 0; sir[i]; i++)
+	{
+		if (separator(sir[i]))
+		{
+			string aux = sir.substr(indice, i - indice);
+			if (!aux.empty())
+			{
+				cuvinte.push_back(aux);
+			}
+			indice = i + 1;
+		}
+	}
+	map<string, int> frecv;
+	vector<string> nerepetitive;
+
+	for (auto cuv : cuvinte)
+	{
+		frecv[cuv]++;
+		if (frecv[cuv] == 1)
+		{
+			nerepetitive.push_back(cuv);
+		}
+	}
+
+	vector < pair<string, int> > perechi;
+
+	for (auto cuv : nerepetitive)
+	{
+		perechi.push_back(make_pair(cuv, frecv[cuv]));
+	}
+	
+	priority_queue< pair<string, int>, vector < pair<string, int>>  , compara> pq_cmp;
+
+	for (auto p : perechi)
+	{
+		pq_cmp.push(p);
+	}
+
+	while (!pq_cmp.empty())
+	{
+		cout << pq_cmp.top().first << " => " << pq_cmp.top().second <<endl;
+		pq_cmp.pop();
+	}
+
+	return 0;
+}
